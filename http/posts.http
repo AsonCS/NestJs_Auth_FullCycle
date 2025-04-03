@@ -1,0 +1,24 @@
+@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwic3ViIjoiY205MWFnc2ZqMDAwMHRhY2tmY244NmZ5YSIsImlhdCI6MTc0MzY5NjAxNywiZXhwIjoxNzQzNzAzMjE3fQ.py8G1NbURqI59aQ3h6kFBeRSbQFY43lFEqslfnsZVhQ
+
+###
+GET http://localhost:3000/posts
+Authorization: {{ authorization }}
+
+###
+GET http://localhost:3000/posts/cm91i13x50001tauw2nt6zttt
+Authorization: {{ authorization }}
+
+###
+DELETE http://localhost:3000/posts/cm91i13x50001tauw2nt6zttt
+Authorization: {{ authorization }}
+
+###
+POST http://localhost:3000/posts
+Authorization: {{ authorization }}
+Content-Type: application/json
+
+{
+    "title": "Title 4",
+    "content": "Content 4",
+    "published": true
+}

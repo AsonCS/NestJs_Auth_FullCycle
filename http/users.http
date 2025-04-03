@@ -1,0 +1,25 @@
+@authorizationWithoutSub = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwiaWF0IjoxNzQzNjkwOTgxLCJleHAiOjE3NDM2OTgxODF9.SlK8caa3ZHtEqXol1KJpHiTQu_OGqc2snPIoE6eiv6Y
+@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwic3ViIjoiY205MWFnc2ZqMDAwMHRhY2tmY244NmZ5YSIsImlhdCI6MTc0MzY5NjAxNywiZXhwIjoxNzQzNzAzMjE3fQ.py8G1NbURqI59aQ3h6kFBeRSbQFY43lFEqslfnsZVhQ
+
+###
+GET http://localhost:3000/users
+Authorization: {{ authorization }}
+
+###
+GET http://localhost:3000/users/me
+Authorization: {{ authorization }}
+
+###
+GET http://localhost:3000/users/cm91gwnmd0000ta3oe1k2f46z
+
+###
+POST http://localhost:3000/users
+Authorization: {{ authorization }}
+Content-Type: application/json
+
+{
+    "name": "Reader",
+    "email": "reader@user.com",
+    "password": "reader",
+    "role": "reader"
+}

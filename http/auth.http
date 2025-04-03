@@ -1,0 +1,13 @@
+###
+# @name userLogin
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@user.com",
+    "password": "admin"
+}
+
+###
+
+@accessToken = {{ userLogin.response.body.access_token }}
