@@ -1,24 +1,22 @@
-@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwic3ViIjoiY205MWFnc2ZqMDAwMHRhY2tmY244NmZ5YSIsImlhdCI6MTc0MzY5NjAxNywiZXhwIjoxNzQzNzAzMjE3fQ.py8G1NbURqI59aQ3h6kFBeRSbQFY43lFEqslfnsZVhQ
+###
+GET {{host}}/posts
+Authorization: {{tokenReader}}
 
 ###
-GET http://localhost:3000/posts
-Authorization: {{ authorization }}
+GET {{host}}/posts/cm92hkcf20001tas8um2yiqc2
+Authorization: {{tokenReader}}
 
 ###
-GET http://localhost:3000/posts/cm91i13x50001tauw2nt6zttt
-Authorization: {{ authorization }}
+DELETE {{host}}/posts/cm91i13x50001tauw2nt6zttt
+Authorization: {{tokenReader}}
 
 ###
-DELETE http://localhost:3000/posts/cm91i13x50001tauw2nt6zttt
-Authorization: {{ authorization }}
-
-###
-POST http://localhost:3000/posts
-Authorization: {{ authorization }}
+POST {{host}}/posts
+Authorization: {{tokenReader}}
 Content-Type: application/json
 
 {
-    "title": "Title 4",
-    "content": "Content 4",
-    "published": true
+    "title": "Title 7",
+    "content": "Content 7",
+    "published": false
 }

@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common'
+import {
+	Controller,
+	Get,
+	Post,
+	Body,
+	Patch,
+	Param,
+	Delete,
+	Req,
+	UseGuards,
+	NotFoundException,
+} from '@nestjs/common'
 import { PostsService } from './posts.service'
 import { CreatePostDto } from './dto/create-post.dto'
 import { UpdatePostDto } from './dto/update-post.dto'
@@ -13,7 +24,7 @@ import { RoleGuard } from 'src/auth/role/role.guard'
 export class PostsController {
 	constructor(private readonly postsService: PostsService) {}
 
-	@RequiredRoles(Roles.EDITOR, Roles.WRITER)
+	//@RequiredRoles(Roles.EDITOR, Roles.WRITER)
 	@Post()
 	create(@Body() createPostDto: CreatePostDto, @Req() req: Request) {
 		return this.postsService.create({
@@ -30,8 +41,12 @@ export class PostsController {
 
 	@RequiredRoles(Roles.EDITOR, Roles.WRITER, Roles.READER)
 	@Get(':id')
-	findOne(@Param('id') id: string) {
-		return this.postsService.findOne(id)
+	async findOne(@Param('id') id: string) {
+		const post = await this.postsService.findOne(id)
+		if (!post) {
+			throw new NotFoundException('Post not found')
+		}
+		return post
 	}
 
 	@RequiredRoles(Roles.EDITOR, Roles.WRITER)

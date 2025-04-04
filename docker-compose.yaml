@@ -1,8 +1,13 @@
 services:
-  db:
-    image: postgres:16.8-alpine3.20
-    environment:
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: mydb
-    ports:
-      - "5432:5432"
+    db:
+        image: postgres:16.8-alpine3.20
+        environment:
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: mydb
+        ports:
+            - '5432:5432'
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:

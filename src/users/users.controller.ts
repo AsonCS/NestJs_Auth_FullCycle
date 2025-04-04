@@ -4,16 +4,12 @@ import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { AuthGuard } from 'src/auth/auth.guard'
 import { Request } from 'express'
-import { RoleGuard } from 'src/auth/role/role.guard'
-import { RequiredRoles } from 'src/auth/required-roles.decorator'
-import { Roles } from '@prisma/client'
 
 @Controller('users')
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
-	@UseGuards(AuthGuard, RoleGuard)
-	@RequiredRoles(Roles.ADMIN)
+	@UseGuards(AuthGuard)
 	@Post()
 	async create(@Body() createUserDto: CreateUserDto, @Req() req: Request) {
 		const newUser = await this.usersService.create(createUserDto)
@@ -32,7 +28,6 @@ export class UsersController {
 	@UseGuards(AuthGuard)
 	@Get('/me')
 	findMe(@Req() req: Request) {
-		console.log(req.user)
 		return this.usersService.findOne(req.user!.id)
 	}
 
@@ -47,8 +42,7 @@ export class UsersController {
 		return this.usersService.update(id, updateUserDto)
 	}
 
-	@UseGuards(AuthGuard, RoleGuard)
-	@RequiredRoles(Roles.ADMIN)
+	@UseGuards(AuthGuard)
 	@Delete(':id')
 	remove(@Param('id') id: string) {
 		return this.usersService.remove(id)

@@ -1,8 +1,29 @@
 {
-    "cSpell.words": [
-        "casl",
-        "Casl",
-        "cuid",
-        "mydb"
-    ]
+	"cSpell.words": ["casl", "Casl", "cuid", "mydb"],
+	"rest-client.environmentVariables": {
+		"$shared": {
+			"version": "v1",
+			"prodToken": "foo",
+			"nonProdToken": "bar",
+			"tokenAdmin": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOltbIm1hbmFnZSIsImFsbCJdLFsibWFuYWdlIiwiYWxsIl1dLCJzdWIiOiJjbTkyaGR0ejUwMDAwdGE1MGc1bDd6aGpjIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzQzNzgyOTcwLCJleHAiOjE3NDM3OTAxNzB9.EwH6LIbB5IliSSTPSJMton03bO_lCpVcOu10PJ9hSJ8",
+			"tokenReader": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlYWRlckB1c2VyLmNvbSIsIm5hbWUiOiJSZWFkZXIiLCJwZXJtaXNzaW9ucyI6W1sicmVhZCIsIlBvc3QiLHsicHVibGlzaGVkIjp0cnVlfV1dLCJzdWIiOiJjbTkyeG5lZTAwMDAwdGFyOGNnODdtMTBpIiwicm9sZSI6IlJFQURFUiIsImlhdCI6MTc0Mzc4MjY5NCwiZXhwIjoxNzQzNzg5ODk0fQ.U-huQewnxle7g98qj8XF3CUOWjnk28Ur65A9oIEwDkU"
+		},
+		"local": {
+			"version": "v2",
+			"host": "http://localhost:3000",
+			"token": "{{$shared nonProdToken}}",
+			"tokenAdmin": "{{$shared tokenAdmin}}",
+			"tokenReader": "{{$shared tokenReader}}",
+			"tokenWriter": "{{$shared tokenWriter}}",
+			"secretKey": "devSecret"
+		},
+		"production": {
+			"host": "http://localhost:3000",
+			"token": "{{$shared prodToken}}",
+			"tokenAdmin": "{{$shared tokenAdmin}}",
+			"tokenReader": "{{$shared tokenReader}}",
+			"tokenWriter": "{{$shared tokenWriter}}",
+			"secretKey": "prodSecret"
+		}
+	}
 }

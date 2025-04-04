@@ -1,25 +1,64 @@
-@authorizationWithoutSub = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwiaWF0IjoxNzQzNjkwOTgxLCJleHAiOjE3NDM2OTgxODF9.SlK8caa3ZHtEqXol1KJpHiTQu_OGqc2snPIoE6eiv6Y
-@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwibmFtZSI6IkFkbWluIiwic3ViIjoiY205MWFnc2ZqMDAwMHRhY2tmY244NmZ5YSIsImlhdCI6MTc0MzY5NjAxNywiZXhwIjoxNzQzNzAzMjE3fQ.py8G1NbURqI59aQ3h6kFBeRSbQFY43lFEqslfnsZVhQ
+###
+GET {{host}}/users
+Authorization: {{tokenAdmin}}
 
 ###
-GET http://localhost:3000/users
-Authorization: {{ authorization }}
+GET {{host}}/users/me
+Authorization: {{tokenReader}}
 
 ###
-GET http://localhost:3000/users/me
-Authorization: {{ authorization }}
+GET {{host}}/users/cm92hdtz50000ta50g5l7zhjc
 
 ###
-GET http://localhost:3000/users/cm91gwnmd0000ta3oe1k2f46z
+DELETE {{host}}/users/cm92h5ppx0000taksedds6nqu
 
 ###
-POST http://localhost:3000/users
-Authorization: {{ authorization }}
+POST {{host}}/users
+Authorization: {{tokenReader}}
 Content-Type: application/json
 
 {
-    "name": "Reader",
-    "email": "reader@user.com",
-    "password": "reader",
-    "role": "reader"
+	"name": "Admin",
+	"email": "admin@user.com",
+	"password": "admin",
+	"permissions": [
+		[
+			"manage",
+			"all"
+		]
+	],
+	"role": "admin"
+}
+
+###
+POST {{host}}/users
+Authorization: {{tokenReader}}
+Content-Type: application/json
+
+{
+	"name": "Reader 1",
+	"email": "reader1@user.com",
+	"password": "reader",
+	"role": "reader"
+}
+
+###
+POST {{host}}/users
+Authorization: {{tokenReader}}
+Content-Type: application/json
+
+{
+	"name": "Writer",
+	"email": "writer@user.com",
+	"password": "writer",
+	"role": "writer"
+}
+
+###
+PATCH {{host}}/users/cm92xnee00000tar8cg87m10i
+Authorization: {{tokenReader}}
+Content-Type: application/json
+
+{
+	"permissions": []
 }

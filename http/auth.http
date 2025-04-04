@@ -1,6 +1,5 @@
 ###
-# @name userLogin
-POST http://localhost:3000/auth/login
+POST {{host}}/auth/login
 Content-Type: application/json
 
 {
@@ -9,5 +8,19 @@ Content-Type: application/json
 }
 
 ###
+POST {{host}}/auth/login
+Content-Type: application/json
 
-@accessToken = {{ userLogin.response.body.access_token }}
+{
+    "email": "reader@user.com",
+    "password": "reader"
+}
+
+###
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "writer@user.com",
+    "password": "writer"
+}

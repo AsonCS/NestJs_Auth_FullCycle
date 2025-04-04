@@ -5,39 +5,41 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 enum Roles {
-  ADMIN
-  EDITOR
-  WRITER
-  READER
+    ADMIN
+    EDITOR
+    WRITER
+    READER
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      Roles    @default(READER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Post      Post[]
+    id          String   @id @default(cuid())
+    name        String
+    email       String   @unique
+    password    String
+    role        Roles    @default(READER)
+    /// [PermList]
+    permissions Json?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    Post        Post[]
 }
 
 model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String   @db.Text
-  published Boolean  @default(false)
-  authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id        String   @id @default(cuid())
+    title     String
+    content   String   @db.Text
+    published Boolean  @default(false)
+    authorId  String
+    author    User     @relation(fields: [authorId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
